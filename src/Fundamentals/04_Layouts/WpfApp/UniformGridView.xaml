@@ -1,0 +1,25 @@
+﻿<Window x:Class="WpfApp.UniformGridView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        mc:Ignorable="d"
+        Title="UniformGridView" Height="450" Width="800">
+    
+    <UniformGrid Columns="2">
+
+        <Button Background="Blue" Content="1" />
+        <Button Background="Green" Content="2" />
+        <Button Background="Red" Content="3" />
+        
+        <Button Background="Blue" Content="4" />
+        <Button Background="Green" Content="5" />
+        <Button Background="Red" Content="6" />
+        
+        <Button Background="Blue" Content="7" />
+        <Button Background="Green" Content="8" />
+        <Button Background="Red" Content="9" />
+
+    </UniformGrid>
+</Window>
