@@ -6,17 +6,25 @@
         xmlns:local="clr-namespace:WpfApp.Views"
         mc:Ignorable="d"
         Title="UsersView" Height="450" Width="800">
+
+    <Window.Resources>
+
+    </Window.Resources>
     <Grid>
 
         <DockPanel>
-            <StackPanel 
-                Margin="5"
+            <DockPanel 
+                
                 DockPanel.Dock="Top">
-                <Button 
-                    Width="100" 
-                    Height="30"
-                    HorizontalAlignment="Right">Add user</Button>
-            </StackPanel>
+
+                <Button DockPanel.Dock="Left">Remove user</Button>
+                <Button DockPanel.Dock="Left" Style="{StaticResource PrintButtonStyle}" >Print</Button>
+                <Button DockPanel.Dock="Right">Add user</Button>
+                <Button DockPanel.Dock="Right">Edit user</Button>
+
+                <Border />
+
+            </DockPanel>
 
             <ListView 
                 ItemsSource="{Binding Users}">
@@ -27,9 +35,9 @@
                         <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" />
                     </GridView>
                 </ListView.View>
-                
+
             </ListView>
         </DockPanel>
-        
+
     </Grid>
 </Window>

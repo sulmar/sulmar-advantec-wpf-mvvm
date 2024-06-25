@@ -4,6 +4,23 @@
              xmlns:local="clr-namespace:WpfApp"
              StartupUri="Views/UsersView.xaml">
     <Application.Resources>
-         
+
+        <Style x:Key="DefaultButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="120" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Background" Value="Green" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Margin" Value="5" />
+        </Style>
+
+        <Style TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}" />
+
+        <Style x:Key="PrintButtonStyle" TargetType="Button" 
+               BasedOn="{StaticResource DefaultButtonStyle}"
+         >
+
+            <Setter Property="Background" Value="Blue" />
+        </Style>
+        
     </Application.Resources>
 </Application>
