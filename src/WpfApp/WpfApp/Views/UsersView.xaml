@@ -17,17 +17,19 @@
                 
                 DockPanel.Dock="Top">
 
-                <Button DockPanel.Dock="Left">Remove user</Button>
+                <Button DockPanel.Dock="Left" Command="{Binding RemoveUserCommand}">Remove user</Button>
                 <Button DockPanel.Dock="Left" Style="{StaticResource PrintButtonStyle}" >Print</Button>
                 <Button DockPanel.Dock="Right" Command="{Binding AddUserCommand}">Add user</Button>
-                <Button DockPanel.Dock="Right">Edit user</Button>
+                <Button DockPanel.Dock="Right" Command="{Binding EditUserCommand}">Edit user</Button>
 
                 <Border />
 
             </DockPanel>
 
-            <ListView 
-                ItemsSource="{Binding Users}">
+            <ListView
+                ItemsSource="{Binding Users}"
+                SelectedItem="{Binding SelectedUser}"
+                >
 
                 <ListView.View>
                     <GridView>

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Domain.Models;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,13 +22,16 @@ namespace WpfApp.Views
     /// </summary>
     public partial class AddUserView : Window
     {
+        public User User { get; set; }
+
         public AddUserView()
         {
             InitializeComponent();
 
             var viewModel = App.Current.Services.GetRequiredService<AddUserViewModel>();
-            this.DataContext = viewModel;
 
+            this.DataContext = viewModel;
+            
            // viewModel.UserSaved += ViewModel_UserSaved;
             viewModel.UserSaved += user => { DialogResult = true; Close(); };
         }
