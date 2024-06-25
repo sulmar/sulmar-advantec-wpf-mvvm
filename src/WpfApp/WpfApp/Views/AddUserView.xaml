@@ -4,8 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp.Views"
+        xmlns:vm="clr-namespace:WpfApp.ViewModels"
         mc:Ignorable="d"
         Title="AddUserView" Height="250" Width="220">
+
+    <d:Window.DataContext>
+        <vm:AddUserViewModel />
+    </d:Window.DataContext>
 
     <Window.Resources>
         <Style TargetType="TextBox">
