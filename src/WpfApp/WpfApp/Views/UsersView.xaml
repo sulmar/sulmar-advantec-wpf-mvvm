@@ -19,7 +19,7 @@
 
                 <Button DockPanel.Dock="Left">Remove user</Button>
                 <Button DockPanel.Dock="Left" Style="{StaticResource PrintButtonStyle}" >Print</Button>
-                <Button DockPanel.Dock="Right">Add user</Button>
+                <Button DockPanel.Dock="Right" Command="{Binding AddUserCommand}">Add user</Button>
                 <Button DockPanel.Dock="Right">Edit user</Button>
 
                 <Border />

@@ -1,37 +1,27 @@
 ﻿using Domain.Abstractions;
 using Domain.Models;
+using System.Collections.ObjectModel;
+using System.Net.NetworkInformation;
+using System.Windows.Input;
+using WpfApp.Commands;
 
 namespace WpfApp.ViewModels;
 
-
-abstract class BaseViewModel
-{
-
-}
-
-class EntitiesViewModel<T> : BaseViewModel
-{
-    public List<T> Entities { get; set; }
-
-    public EntitiesViewModel(IEntityRepository<T> repository)
-    {
-        Entities = repository.GetAll();
-    }
-}
-
 class UsersViewModel : BaseViewModel
 {
-    public List<User> Users { get; set; }
+    public ObservableCollection<User> Users { get; set; }
 
-	public UsersViewModel(IUserRepository userRepository)
-	{
-		Users = userRepository.GetAll();
-	}
-}
+    public ICommand AddUserCommand { get; set; }
 
-class ProductViewModel : EntitiesViewModel<Product>
-{
-    public ProductViewModel(IProductRepository repository) : base(repository)
+    public UsersViewModel(IUserRepository userRepository)
     {
+        Users = new ObservableCollection<User>(userRepository.GetAll());
+
+        AddUserCommand = new RelayCommand(AddUser);
+    }
+
+    private void AddUser(object obj)
+    {
+        Users.Add(new User { Id = 99, Name = "a", Email = "b" });
     }
 }
