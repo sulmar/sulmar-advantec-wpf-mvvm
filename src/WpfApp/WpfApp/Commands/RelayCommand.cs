@@ -24,4 +24,9 @@ public class RelayCommand : ICommand
     {
         execute?.Invoke(parameter);
     }
+
+    public void RaiseCanExecuteChanged()
+    {
+        CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+    }
 }
