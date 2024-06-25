@@ -33,6 +33,8 @@ namespace WpfApp
             services.AddSingleton<UsersViewModel>();
             services.AddSingleton<IUserRepository, FakeUserRepository>();
 
+            services.AddTransient<AddUserViewModel>();
+
             services.AddSingleton<ProductViewModel>();
             services.AddSingleton<IProductRepository, FakeProductRepository>();
 
