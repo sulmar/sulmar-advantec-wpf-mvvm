@@ -21,6 +21,7 @@
                 <Button DockPanel.Dock="Left" Style="{StaticResource PrintButtonStyle}" >Print</Button>
                 <Button DockPanel.Dock="Right" Command="{Binding AddUserCommand}">Add user</Button>
                 <Button DockPanel.Dock="Right" Command="{Binding EditUserCommand}">Edit user</Button>
+                <Button DockPanel.Dock="Right" Command="{Binding UpdateUserCommand}">Update user</Button>
 
                 <Border />
 

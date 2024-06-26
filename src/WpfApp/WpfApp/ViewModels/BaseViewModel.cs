@@ -1,6 +1,14 @@
-﻿namespace WpfApp.ViewModels;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
-abstract class BaseViewModel
+namespace WpfApp.ViewModels;
+
+abstract class BaseViewModel : INotifyPropertyChanged
 {
+    public event PropertyChangedEventHandler? PropertyChanged;
 
+    protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
 }
