@@ -11,10 +11,15 @@
     <Grid>
 
         <DockPanel>
-            <StackPanel 
+            <StackPanel  Background="Black"
                 Orientation="Horizontal"
                 DockPanel.Dock="Top">
+
+                
+          
+
                 <Button 
+
                     Command="{Binding NavigateToUsersCommand}"
                     Content="Users">
 

@@ -50,8 +50,10 @@
             </Style.Triggers>
         </Style>
 
-        
 
-        
+
+        <BitmapImage x:Key="AddImage" UriSource="/Images/add.png" />
+
+
     </Application.Resources>
 </Application>

@@ -10,11 +10,14 @@
 
     <Grid Background="Blue">
 
-        <TextBlock Text="Users View"
+        <!--<TextBlock Text="Users View"
                    Foreground="White"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-        />
+        />-->
+
+        <Image Width="32" Height="32" Source="{StaticResource AddImage}" />
+
 
     </Grid>
 </Page>
