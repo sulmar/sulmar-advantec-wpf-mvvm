@@ -2,6 +2,7 @@
 using Domain.Models;
 using System.Collections.ObjectModel;
 using System.Net.NetworkInformation;
+using System.Windows;
 using System.Windows.Input;
 using WpfApp.Commands;
 using WpfApp.Views;
@@ -25,11 +26,13 @@ partial class UsersViewModel : BaseViewModel
         }
     }
 
-   
+    private IUserRepository _userRepository;
 
     public UsersViewModel(IUserRepository userRepository)
     {
-        Users = new ObservableCollection<User>(userRepository.GetAll());
+        _userRepository = userRepository;
+
+        Users = new ObservableCollection<User>(_userRepository.GetAll());
 
         AddUserCommand = new RelayCommand(AddUser);
         EditUserCommand = new RelayCommand(EditUser, CanEditUser);
@@ -45,7 +48,16 @@ partial class UsersViewModel : BaseViewModel
         if (result == true)
         {
             User newUser = ((AddUserViewModel)dialog.DataContext).User;
-            Users.Add(newUser);
+
+            try
+            {
+                _userRepository.Add(newUser);
+                Users.Add(newUser);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Wystąpil blad podczas zapisu", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 

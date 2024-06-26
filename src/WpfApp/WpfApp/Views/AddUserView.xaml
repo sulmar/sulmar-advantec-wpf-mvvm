@@ -21,7 +21,7 @@
 
         <StackPanel>
             <Label Content="Name" />
-            <TextBox Text="{Binding User.Name}" />
+            <TextBox Text="{Binding User.Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" />
 
             <Label Content="Email"/>
             <TextBox Text="{Binding User.Email}"  />
