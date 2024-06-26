@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp.Views"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:b="clr-namespace:WpfApp.Behaviors"
         mc:Ignorable="d"
         Title="ShellView" Height="450" Width="800">
     <Grid>
@@ -12,8 +14,35 @@
             <StackPanel 
                 Orientation="Horizontal"
                 DockPanel.Dock="Top">
-                <Button Command="{Binding NavigateToUsersCommand}">Users</Button>
-                <Button Command="{Binding NavigateToProductsCommand}">Products</Button>
+                <Button 
+                    Command="{Binding NavigateToUsersCommand}"
+                    Content="Users">
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding NavigateToUsersCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers> 
+                    
+                    <i:Interaction.Behaviors>
+                        <b:MouseEnterButtonBehavior HighlightColor="Red" />
+                        
+                       
+                    </i:Interaction.Behaviors>
+                </Button>
+                <Button Command="{Binding NavigateToProductsCommand}"
+                        Content="Products">
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding NavigateToProductsCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <i:Interaction.Behaviors>
+                        <b:MouseEnterButtonBehavior HighlightColor="Yellow" />
+                    </i:Interaction.Behaviors>
+
+                </Button>
             </StackPanel>
 
             <!--<ContentControl />-->
