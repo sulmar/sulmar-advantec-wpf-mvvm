@@ -27,7 +27,7 @@
             <TextBox Text="{Binding User.Email}"  />
 
             <uc:AddressUserControl DataContext="{Binding User.HomeAddress}" />
-
+            <uc:AddressUserControl DataContext="{Binding User.ShippingAddress}" />
 
             <Button Content="Save"
                     IsDefault="True"

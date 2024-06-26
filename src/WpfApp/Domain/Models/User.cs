@@ -3,8 +3,8 @@
 public class User : BaseEntity
 {
     private string? _Name;
-    public string? Name 
-    { 
+    public string? Name
+    {
         get => _Name;
         set
         {
@@ -21,9 +21,9 @@ public class User : BaseEntity
         {
             _Email = value;
             OnPropertyChanged();
-        } 
+        }
     }
-    public Address? HomeAddress { get; set; }
-    public Address? ShippingAddress { get; set; }
+    public Address HomeAddress { get; set; } = new Address();
+    public Address ShippingAddress { get; set; } = new Address();
 
 }
