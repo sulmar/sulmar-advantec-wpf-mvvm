@@ -23,4 +23,7 @@ public class User : BaseEntity
             OnPropertyChanged();
         } 
     }
+    public Address? HomeAddress { get; set; }
+    public Address? ShippingAddress { get; set; }
+
 }

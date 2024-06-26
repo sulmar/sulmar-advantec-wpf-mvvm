@@ -1,6 +1,8 @@
-﻿using Domain.Abstractions;
+﻿using Bogus;
+using Domain.Abstractions;
 using Domain.Models;
 using Infrastructure;
+using Infrastructure.Fakers;
 using Microsoft.Extensions.DependencyInjection;
 using System.Configuration;
 using System.Data;
@@ -49,14 +51,15 @@ namespace WpfApp
             });
 
 
+            services.AddSingleton<Faker<User>, UserFaker>();
+            services.AddSingleton<Faker<Address>, AddressFaker>();
+
             services.AddSingleton<List<User>>(sp =>
             {
-                return new List<User>
-                {
-                    new User { Id = 1, Name = "John Smith", Email = "john@domain.com" },
-                    new User { Id = 2, Name = "Bob Smith", Email = "bob@domain.com" },
-                    new User { Id = 3, Name = "Kate Smith", Email = "kate@domain.com" },
-                };
+                var faker = sp.GetRequiredService<Faker<User>>();
+
+                var users = faker.Generate(20);
+                return users;
             });
 
 
