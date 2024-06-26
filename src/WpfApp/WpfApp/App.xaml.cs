@@ -8,7 +8,9 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Configuration;
 using System.Data;
 using System.Windows;
+using WpfApp.Services;
 using WpfApp.ViewModels;
+using WpfApp.Views;
 
 namespace WpfApp
 {
@@ -31,7 +33,10 @@ namespace WpfApp
 
             context.Database.EnsureCreated();
 
+            var navigationService = Services.GetRequiredService<INavigationService>();
 
+            navigationService.RegisterRoute("Users", typeof(UsersPageView));
+            navigationService.RegisterRoute("Products", typeof(ProductsPageView));
         }
 
         private static IServiceProvider ConfigureServices()
@@ -44,6 +49,8 @@ namespace WpfApp
             services.AddSingleton<UsersViewModel>();
             services.AddSingleton<IUserRepository, DbUserRepository>();
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
+
+            services.AddSingleton<ShellViewModel>();
 
             services.AddTransient<AddUserViewModel>();
             services.AddTransient<EditUserViewModel>();
@@ -72,6 +79,11 @@ namespace WpfApp
                 return users;
             });
 
+
+            services.AddSingleton<INavigationService, FrameNavigationService>();
+
+            services.AddSingleton<UsersPageView>();
+            services.AddSingleton<ProductsPageView>();
 
             return services.BuildServiceProvider();
         }
