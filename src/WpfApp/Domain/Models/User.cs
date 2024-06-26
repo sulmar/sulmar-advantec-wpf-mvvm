@@ -2,6 +2,25 @@
 
 public class User : BaseEntity
 {
-    public string? Name { get; set; }
-    public string? Email { get; set; }
+    private string? _Name;
+    public string? Name 
+    { 
+        get => _Name;
+        set
+        {
+            _Name = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private string _Email;
+    public string? Email
+    {
+        get => _Email;
+        set
+        {
+            _Email = value;
+            OnPropertyChanged();
+        } 
+    }
 }
