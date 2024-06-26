@@ -32,6 +32,7 @@
             <Button Content="Save"
                     IsDefault="True"
                     Command="{Binding SaveCommand}"
+                    IsEnabled="{Binding User.IsValid}"
                     />
 
 

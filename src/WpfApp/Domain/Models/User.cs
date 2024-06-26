@@ -17,6 +17,7 @@ public class User : BaseEntity, INotifyDataErrorInfo
             _Name = value;
             ValidateName();
             OnPropertyChanged();
+          
         }
     }
 
@@ -35,6 +36,8 @@ public class User : BaseEntity, INotifyDataErrorInfo
     protected void OnErrorsChanged(string propertyName)
     {
         ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+
+        OnPropertyChanged(nameof(IsValid));
     }
 
     private void AddError(string propertyName, string error)
@@ -80,6 +83,7 @@ public class User : BaseEntity, INotifyDataErrorInfo
 
     public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
     public bool HasErrors => errors.Any();
+    public bool IsValid => !HasErrors;
     public IEnumerable GetErrors(string? propertyName)
     {
         return errors.ContainsKey(propertyName) ? errors[propertyName] : null;
