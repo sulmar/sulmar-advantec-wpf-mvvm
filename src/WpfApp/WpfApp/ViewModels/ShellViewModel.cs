@@ -18,6 +18,8 @@ class ShellViewModel : BaseViewModel
     public ICommand NavigateToUsersCommand { get; }
     public ICommand NavigateToProductsCommand { get; }  
 
+    public BaseViewModel Selected { get; set; }
+
     public ShellViewModel(INavigationService navigationService)
     {
         NavigateToUsersCommand = new RelayCommand(NavigateToUsers);
