@@ -13,5 +13,6 @@ public class UserFaker : Faker<User>
         RuleFor(p=>p.Email, f=>f.Person.Email);
         RuleFor(p=> p.HomeAddress, addressFaker.Generate());
         RuleFor(p=>p.ShippingAddress, addressFaker.Generate());
+        RuleFor(p => p.Salary, f => f.Random.Decimal(1000, 2000));
     }
 }
