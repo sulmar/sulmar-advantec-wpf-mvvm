@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp.Views"
         xmlns:vm="clr-namespace:WpfApp.ViewModels"
+        xmlns:uc="clr-namespace:WpfApp.UserControls"
         mc:Ignorable="d"
         Title="AddUserView" Height="250" Width="220">
 
@@ -13,11 +14,7 @@
     </d:Window.DataContext>
 
     <Window.Resources>
-        <Style TargetType="TextBox">
-            <Setter Property="Width" Value="200" />
-            <Setter Property="Margin" Value="5" />
-            <Setter Property="HorizontalAlignment" Value="Left" />
-        </Style>
+       
     </Window.Resources>
 
         <Grid>
@@ -28,6 +25,9 @@
 
             <Label Content="Email"/>
             <TextBox Text="{Binding User.Email}"  />
+
+            <uc:AddressUserControl DataContext="{Binding User.HomeAddress}" />
+
 
             <Button Content="Save"
                     IsDefault="True"
