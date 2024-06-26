@@ -8,7 +8,8 @@ using WpfApp.Views;
 
 namespace WpfApp.ViewModels;
 
-class UsersViewModel : BaseViewModel
+
+partial class UsersViewModel : BaseViewModel
 {
     public ObservableCollection<User> Users { get; set; }
 
@@ -24,9 +25,7 @@ class UsersViewModel : BaseViewModel
         }
     }
 
-    public ICommand AddUserCommand { get; }
-    public RelayCommand EditUserCommand { get; }
-    public RelayCommand RemoveUserCommand { get;  }
+   
 
     public UsersViewModel(IUserRepository userRepository)
     {
@@ -35,6 +34,7 @@ class UsersViewModel : BaseViewModel
         AddUserCommand = new RelayCommand(AddUser);
         EditUserCommand = new RelayCommand(EditUser, CanEditUser);
         RemoveUserCommand = new RelayCommand(RemoveUser,CanRemoveUser);
+        UpdateUserCommand = new RelayCommand(UpdateUser);
     }
 
     private void AddUser(object obj)
@@ -51,9 +51,14 @@ class UsersViewModel : BaseViewModel
 
     private void EditUser(object obj)
     {
-        AddUserView dialog = new AddUserView();
+        var dialog = new EditUserView();
         dialog.User = SelectedUser;
         var result = dialog.ShowDialog();
+
+        if (result == true)
+        {
+            // TODO: Zapisz w db
+        }
     }
 
     private bool CanEditUser(object obj) => IsSelectedUser;
@@ -61,4 +66,11 @@ class UsersViewModel : BaseViewModel
     public bool IsSelectedUser => SelectedUser != null;
     private bool CanRemoveUser(object obj) => IsSelectedUser;
     private void RemoveUser(object obj) => Users.Remove(SelectedUser);
+
+    private void UpdateUser(object obj)
+    {
+        SelectedUser.Email = SelectedUser.Email.ToUpper();
+    }
+
+
 }
