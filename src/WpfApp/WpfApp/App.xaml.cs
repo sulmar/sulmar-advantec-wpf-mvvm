@@ -4,6 +4,7 @@ using Domain.Models;
 using Infrastructure;
 using Infrastructure.Fakers;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Configuration;
 using System.Data;
@@ -24,9 +25,17 @@ namespace WpfApp
         // Install-Package Microsoft.Extensions.DependencyInjection
 
         public IServiceProvider Services { get; }
+        
+        public static IConfiguration Configuration { get; set; }
 
         public App()
         {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddJsonFile("appsettings.json");
+
+            Configuration = builder.Build();
+
             Services = ConfigureServices();
 
             var context = Services.GetRequiredService<AppDbContext>();
@@ -41,8 +50,7 @@ namespace WpfApp
 
         private static IServiceProvider ConfigureServices()
         {
-            // TODO: Pobieraj z konfiguracji
-            var connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=AppDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+            var connectionString = Configuration.GetConnectionString("AppDb");
 
             var services = new ServiceCollection();
 
